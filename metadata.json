@@ -1,0 +1,8 @@
+{
+  "name": "NFC Profile: Alex Amedimwole",
+  "description": "NFC Digital Identity & Executive Profile of Alex Amedimwole, Founder of LEXMEDIA.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

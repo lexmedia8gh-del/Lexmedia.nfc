@@ -1,0 +1,139 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Plus Jakarta Sans", sans-serif;
+  
+  --color-obsidian-950: #06070a;
+  --color-obsidian-900: #090b10;
+  --color-obsidian-850: #0d1017;
+  --color-obsidian-800: #121722;
+  --color-obsidian-700: #1a2130;
+
+  --color-brand-400: #60a5fa;
+  --color-brand-500: #3b82f6;
+  --color-brand-600: #2563eb;
+  --color-brand-700: #1d4ed8;
+  --color-brand-glow: rgba(37, 99, 235, 0.35);
+
+  --shadow-glow-blue: 0 0 25px -5px rgba(37, 99, 235, 0.45);
+  --shadow-glow-cyan: 0 0 20px -3px rgba(56, 189, 248, 0.35);
+  --shadow-card-elevated: 0 12px 30px -10px rgba(0, 0, 0, 0.7);
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #090b10;
+  color: #f1f5f9;
+  selection-background-color: #2563eb;
+  selection-color: #ffffff;
+}
+::selection {
+  background: #2563eb;
+  color: #ffffff;
+}
+
+/* Glassmorphism panels */
+.glass-card {
+  background: rgba(18, 23, 34, 0.72);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+}
+.glass-card-interactive {
+  background: rgba(18, 23, 34, 0.72);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.glass-card-interactive:active {
+  transform: scale(0.985);
+  border-color: rgba(59, 130, 246, 0.4);
+  background: rgba(26, 33, 48, 0.85);
+}
+
+/* Subtle pulsing badge glow */
+@keyframes pulse-subtle {
+  0%, 100% { opacity: 0.9; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(1.15); }
+}
+.animate-status-pulse {
+  animation: pulse-subtle 2.2s infinite ease-in-out;
+}
+
+/* Ambient radial lighting */
+.ambient-bg-glow {
+  background: radial-gradient(circle at 50% 15%, rgba(37, 99, 235, 0.18) 0%, rgba(9, 11, 16, 0) 65%);
+}
+
+/* Breathing Avatar Ring Glow Animation */
+@keyframes avatar-pulse {
+  0%, 100% {
+    box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.45), 0 10px 30px -4px rgba(37, 99, 235, 0.35);
+  }
+  50% {
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.75), 0 16px 40px -2px rgba(37, 99, 235, 0.6);
+  }
+}
+.avatar-glow-ring {
+  animation: avatar-pulse 4.5s ease-in-out infinite;
+  will-change: transform, box-shadow;
+}
+
+/* Hide scrollbars cleanly */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Scroll Reveal System */
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity;
+}
+
+.scroll-reveal.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Staggered delay classes for list elements */
+.delay-100 { transition-delay: 80ms; }
+.delay-200 { transition-delay: 140ms; }
+.delay-300 { transition-delay: 200ms; }
+.delay-400 { transition-delay: 260ms; }
+.delay-500 { transition-delay: 320ms; }
+.delay-600 { transition-delay: 380ms; }
+.delay-700 { transition-delay: 440ms; }
+
+/* Floating sticky bar smooth reveal */
+#bottomStickyBar {
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
+  will-change: transform, opacity;
+}
+
+/* Reduced Motion Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .scroll-reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  .avatar-glow-ring,
+  .animate-status-pulse {
+    animation: none !important;
+  }
+  #bottomStickyBar {
+    transition: none !important;
+  }
+  #scrollProgressBar {
+    display: none !important;
+  }
+}
